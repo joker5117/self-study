@@ -19,7 +19,7 @@ body {
 .phone-container {
     width: 375px;
     height: 812px;
-    background-color: #ffffff;
+    background-color: #efecec;
     border-radius: 40px; /* 還記得 7/2 的倒角嗎？網頁也是這樣調！ */
     box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
     padding: 20px;
@@ -75,7 +75,7 @@ body {
 /* 找到你程式碼最底下的這段，修改 background-color */
 .main-news-box {
     width: 100%;
-    background-color: #ffffff; /* 👈 改成白色！讓卡片本身變白色底 */
+    background-color: #f8f5f5; /* 👈 改成白色！讓卡片本身變白色底 */
     border-radius: 24px;
     margin-top: 15px;
     overflow: hidden; 
@@ -107,4 +107,22 @@ body {
 .news-date {
     font-size: 12px;
     color: #8e8e93; /* 淡淡的灰色 */
+}
+
+.small-news-card {
+    display: flex;
+    justify-content: space-between; /* 讓文字靠左、圖片靠右 */
+    align-items: center;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    margin-top: 20px;
+    gap: 15px;
+}
+.small-card-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+    
 }
