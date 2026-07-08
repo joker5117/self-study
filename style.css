@@ -18,13 +18,15 @@ body {
 /* 1. 手機外框：模擬一台白色的 iPhone 畫面 */
 .phone-container {
     width: 375px;
-    height: 812px;
-    background-color: #efecec;
-    border-radius: 40px; /* 還記得 7/2 的倒角嗎？網頁也是這樣調！ */
+    height: 812px; /* 保持固定高度 */
+    background-color: #ecebeb;
+    border-radius: 40px; 
     box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
     padding: 20px;
     position: relative;
-    overflow: hidden;
+    
+    /* 🌟 把原本的 overflow: hidden; 改成下面這行： */
+    overflow-y: auto; /* 魔法就在這！意思是：當垂直（Y軸）內容超出 812px 時，自動允許滾動 */
 }
 
 /* 2. 頂部狀態列 */
@@ -53,7 +55,7 @@ body {
 .category-tabs {
     display: flex;
     gap: 20px;            /* 讓每個標籤中間空出 20px 的美妙距離 */
-    margin-top: 15px;
+    margin-top: 0px;
     margin-bottom: 15px;
 }
 
@@ -75,7 +77,7 @@ body {
 /* 找到你程式碼最底下的這段，修改 background-color */
 .main-news-box {
     width: 100%;
-    background-color: #f8f5f5; /* 👈 改成白色！讓卡片本身變白色底 */
+    background-color: #ffffff; /* 👈 改成白色！讓卡片本身變白色底 */
     border-radius: 24px;
     margin-top: 15px;
     overflow: hidden; 
@@ -125,4 +127,9 @@ body {
     border-radius: 12px;
     object-fit: cover;
     
+}
+
+/* 隱藏手機框內部的滾動條 */
+.phone-container::-webkit-scrollbar {
+    display: none; /* 讓滾動條隱形，但依然可以滑動 */
 }
