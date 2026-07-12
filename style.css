@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. 基礎重設與手機外框樣式
+   ========================================================================== */
 /* 讓網頁的基本邊距歸零，比較好排版 */
 * {
     margin: 0;
@@ -15,7 +18,7 @@ body {
     min-height: 100vh;
 }
 
-/* 1. 手機外框：模擬一台白色的 iPhone 畫面 */
+/* 手機外框：模擬一台白色的 iPhone 畫面 */
 .phone-container {
     width: 375px;
     height: 812px; /* 保持固定高度 */
@@ -24,79 +27,131 @@ body {
     box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
     padding: 20px;
     position: relative;
-    
-    /* 🌟 把原本的 overflow: hidden; 改成下面這行： */
-    overflow-y: auto; /* 魔法就在這！意思是：當垂直（Y軸）內容超出 812px 時，自動允許滾動 */
+    overflow-y: auto; /* 當垂直內容超出 812px 時，自動允許滾動 */
 }
 
-/* 2. 頂部狀態列 */
+/* 隱藏手機框內部的滾動條，讓畫面更像原生 App */
+.phone-container::-webkit-scrollbar {
+    display: none; 
+}
+
+/* 頂部時間狀態列 */
 .status-bar {
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 15px;
 }
 
-/* 3. 焦點搜尋欄的樣式 */
-.search-section input {
-    width: 100%;
-    padding: 10px 15px;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 20px; /* 完美的圓角搜尋框 */
-    font-size: 14px;
-    outline: none;
+/* ==========================================================================
+   2. 頂部搜尋列區塊（完美還原 Figma 置中三明治結構）
+   ========================================================================== */
+/* 外層容器：開啟 Flex，讓頭像、輸入框、按鈕在同一橫排並垂直置中 */
+.search-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;           /* 讓三個東西中間保持 10px 的舒服間距 */
     margin-bottom: 20px;
+    width: 100%;
 }
 
-/* 4. 灰色新聞大矩形框：今天最振奮人心的部分！ */
+/* 左邊圓形大頭貼 */
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;   /* 50% 做出完美的正圓形大頭貼 */
+    object-fit: cover;
+}
 
+/* 中間搜尋欄輸入框 */
+.search-section input {
+    flex: 1;             /* 讓輸入框自動撐開，填滿剩餘空間 */
+    padding: 8px 14px;
+    background-color: #ffffff;      /* 改成白底 */
+    border: 1px solid #e5e5ea;      /* 加上淡淡的灰色細邊框 */
+    border-radius: 20px;            /* 完美的膠囊大圓角 */
+    font-size: 13px;
+    outline: none;
+    color: #3a3a3c;
+}
 
-/* 1. 讓整排標籤有上下間距，並且彼此拉開距離 */
+/* 讓輸入框的提示文字（Placeholder）顏色變淡 */
+.search-section input::placeholder {
+    color: #aeaeb2; 
+}
+
+/* 右邊焦點回顧按鈕 */
+.review-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    background-color: #ffffff;      /* 改成白底 */
+    border: 1px solid #e5e5ea;      /* 細邊框顏色與搜尋框一致 */
+    border-radius: 20px;
+    font-size: 12px;
+    color: #3a3a3c;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;           /* 確保文字絕對不會斷行 */
+}
+
+/* ==========================================================================
+   3. 分類標籤區塊（還原 Figma 膠囊外框造型）
+   ========================================================================== */
+/* 讓整排標籤有上下間距，並且彼此拉開距離 */
 .category-tabs {
     display: flex;
-    gap: 20px;            /* 讓每個標籤中間空出 20px 的美妙距離 */
+    gap: 12px;            /* 稍微縮小間距，讓膠囊標籤排得更精緻 */
     margin-top: 0px;
     margin-bottom: 15px;
 }
 
-/* 2. 預設讓沒被選中的標籤字體變淡灰色，模擬原生 App 質感 */
+/* 預設標籤樣式：加上外框與圓角膠囊 */
 .category-tabs span {
-    font-size: 14px;
-    color: #8e8e93;       /* iOS 經典的灰色 */
+    font-size: 13px;
+    color: #3a3a3c;       
     font-weight: 500;
     cursor: pointer;
+    padding: 4px 12px;    /* 加上內襯，撐出膠囊的空間 */
+    border: 1px solid #cbd5e1; /* 加上淡灰色外框 */
+    border-radius: 20px;  
+    background-color: #ffffff;
 }
 
-/* 3. 當標籤有 active 這個名字時，字體變黑、變粗 */
+/* 當標籤被選中（active）時的樣式 */
 .category-tabs span.active {
-    color: #000000;       /* 變成顯眼的黑色 */
-    font-weight: bold;    /* 字體變粗 */
+    color: #ffffff;               /* 被選中時字變白色 */
+    background-color: #1c1c1e;    /* 背景反白變深色 */
+    border-color: #1c1c1e;        
+    font-weight: bold;
 }
 
-/* 1. 修改原本的大箱子：把原本的 background-color 刪掉，因為現在有圖片了 */
-/* 找到你程式碼最底下的這段，修改 background-color */
+/* ==========================================================================
+   4. 新聞卡片區塊（第一條大新聞 & 下方小新聞列表）
+   ========================================================================== */
+/* 1. 第一條大新聞主要外框 */
 .main-news-box {
     width: 100%;
-    background-color: #ffffff; /* 👈 改成白色！讓卡片本身變白色底 */
+    background-color: #ffffff; 
     border-radius: 24px;
     margin-top: 15px;
-    overflow: hidden; 
+    overflow: hidden; /* 確保裡面的圖片不會超出圓角邊界 */
     box-shadow: 0px 4px 12px rgba(0,0,0,0.05); 
 }
 
-/* 2. 控制新聞圖片：寬度百分之百填滿，高度固定 */
+/* 大新聞圖片 */
 .news-img {
     width: 100%;
     height: 180px;
-    object-fit: cover; /* 🌟這行是魔法！它會讓圖片自動裁切去適應框框，不會被壓扁或拉長 */
+    object-fit: cover; 
 }
 
-/* 3. 新聞文字小箱子：讓文字四周留下一點舒服的留白（Padding） */
+/* 大新聞文字外襯 */
 .news-info {
     padding: 15px;
 }
 
-/* 4. 新聞標題樣式 */
+/* 大新聞標題 */
 .news-title {
     font-size: 16px;
     color: #080809;
@@ -105,31 +160,41 @@ body {
     font-weight: bold;
 }
 
-/* 5. 新聞日期樣式 */
+/* 新聞日期時間 */
 .news-date {
     font-size: 12px;
-    color: #8e8e93; /* 淡淡的灰色 */
+    color: #8e8e93; 
 }
 
+/* 2. 下方左右並排的小新聞卡片 */
 .small-news-card {
     display: flex;
-    justify-content: space-between; /* 讓文字靠左、圖片靠右 */
     align-items: center;
     padding: 15px;
     background-color: #ffffff;
     border-radius: 16px;
     margin-top: 20px;
-    gap: 15px;
+    gap: 15px; /* 強制橫向圖文中間空出 15px 距離 */
 }
+
+/* 小新聞卡片的圖片 */
 .small-card-img {
     width: 80px;
     height: 80px;
     border-radius: 12px;
     object-fit: cover;
-    
+    flex-shrink: 0; /* 確保圖片不被文字擠壓變形 */
 }
 
-/* 隱藏手機框內部的滾動條 */
-.phone-container::-webkit-scrollbar {
-    display: none; /* 讓滾動條隱形，但依然可以滑動 */
+/* 小新聞卡片的文字區塊 */
+.small-card-text h4 {
+    font-size: 14px;
+    color: #080809;
+    line-height: 1.4;
+    margin-bottom: 6px;
+}
+
+.small-card-text p {
+    font-size: 12px;
+    color: #8e8e93;
 }
