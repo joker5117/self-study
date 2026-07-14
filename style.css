@@ -63,15 +63,35 @@ body {
 }
 
 /* 中間搜尋欄輸入框 */
+/* 🌟 新增：搜尋欄的外包裝（負責黑框與排版） */
+.search-wrapper {
+    flex: 1;                     /* 讓它自動撐開，填滿剩餘空間 */
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;   /* 白底 */
+    border: 1.5px solid #000000; /* 👈 加上你想要的帥氣黑框！ */
+    border-radius: 20px;         /* 完美的膠囊大圓角 */
+    padding: 6px 12px;           /* 讓內部留點空間 */
+    gap: 6px;                    /* 放大鏡與文字的間距 */
+}
+
+/* 🌟 新增：放大鏡圖標的樣式 */
+.search-icon {
+    font-size: 11px;
+    color: #8e8e93;              /* 讓放大鏡呈現淡淡的灰色 */
+    display: flex;
+    align-items: center;
+}
+
+/* 🛠️ 修改：原本的 input 樣式（把原本的邊框、背景、圓角都移到外層了） */
 .search-section input {
-    flex: 1;             /* 讓輸入框自動撐開，填滿剩餘空間 */
-    padding: 8px 14px;
-    background-color: #ffffff;      /* 改成白底 */
-    border: 1px solid #e5e5ea;      /* 加上淡淡的灰色細邊框 */
-    border-radius: 20px;            /* 完美的膠囊大圓角 */
+    width: 100%;                 /* 填滿外層包裝 */
+    border: none;                /* 拔掉原本的邊框 */
+    background: transparent;     /* 背景變成透明，才看得到外層的白底 */
     font-size: 13px;
-    outline: none;
+    outline: none;               /* 點擊時不要出現預設藍框 */
     color: #3a3a3c;
+    padding: 0;                  /* 清空內部襯墊 */
 }
 
 /* 讓輸入框的提示文字（Placeholder）顏色變淡 */
@@ -124,6 +144,7 @@ body {
     background-color: #1c1c1e;    /* 背景反白變深色 */
     border-color: #1c1c1e;        
     font-weight: bold;
+    border-radius: 20px;
 }
 
 /* ==========================================================================
